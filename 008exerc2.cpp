@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
-#include<ctime>
-#include<vector>
+#include <ctime>
+#include <vector>
 #include <algorithm>
 
 
@@ -9,18 +9,14 @@ using namespace std;
 
 int main(){
 
-int vecRand[100]={0};
-int vecFreq[20]={0};
+    int vecRand[100]={0};
+    int vecFreq[20]={0};
 
     srand(time(NULL));
-    //vecFreq[0]=0;
-    for(int aux,i=0;i<100;i++){
 
+    for(int aux,i=0;i<100;i++){
         aux=1+rand()%20;
-        //vecRand[i]=aux;
-        //vecFreq[aux-1]++;
         vecFreq[(vecRand[i]=aux)-1]++;
-        cout<<vecRand[i]<<endl;
     }
     cout<<"------------"<<endl;
     int acum=0;
@@ -30,7 +26,6 @@ int vecFreq[20]={0};
     }
     cout<<acum<<endl;
 
-
     vector<int> vecRand1;
     vector<int> vecFreq1;
     int aux1;
@@ -38,23 +33,24 @@ int vecFreq[20]={0};
     for(int i=0;i<100;i++){
         aux1=1+rand()%20;
         vecRand1.push_back(aux1);
-        //vecFreq1.push_back();
     }
-    cout<<vecRand1.at(0);
 
-    int freq, cont=0;
+    int freq, cont=0, maior=0;
+    vector<int>vec;
     for(int i=0;i<20;i++){
-    //for(auto &i:vecRand1){
-      cout<<"freq:"<<i+1<<": "<<(std::count(vecRand1.begin(), vecRand1.end(), i+1))<<endl;
-        cont=cont+(std::count(vecRand1.begin(), vecRand1.end(), i+1));
+        freq=(std::count(vecRand1.begin(), vecRand1.end(), i+1));
+        cout<<"freq:"<<i+1<<": "<<freq<<endl;
+        cont=cont+freq;
+        if(freq>=maior){
+            maior=freq;
+        }
     }
     cout<<"cont"<<cont<<endl;
-    //for(auto &i:vecFreq1){
-      //  cout<<">>"<<i<<endl;
-    //}
-   // int freq[20]={0};
-   // for (int const &i: vecRand1) {
-   //     freq[i]++;
-   // }
+    for(int i=0;i<20;i++){
+        if(maior == (std::count(vecRand1.begin(), vecRand1.end(), i+1))){
+            cout<<"idx: "<<i+1<<endl;
+        }
+    }
+    
     return 0;
 }
